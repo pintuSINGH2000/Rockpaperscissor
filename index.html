@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div id="game-container">
+    <div class="game-container" id="game-container">
       <div class="header">
         <div class="title">
           <p class="uppercase">Rock</p>
@@ -15,21 +15,16 @@
           <p class="uppercase">Scissors</p>
         </div>
         <div class="score">
-          <div class="user-score">
-            <p class="uppercase">
-              Computer Score
-              <input type="number" id="computer-score" readonly value="0" />
-            </p>
-          </div>
           <div class="computer-score">
-            <p class="uppercase">
-              Your Score
-              <input type="number" id="user-score" readonly value="0" />
-            </p>
+            <p class="uppercase padding-1">Computer Score</p>
+            <p class="pc-current-score"></p>
+          </div>
+          <div class="user-score">
+            <p class="uppercase padding-1">Your Score</p>
+            <p class="user-current-score"></p>
           </div>
         </div>
       </div>
-
       <div class="main">
         <div class="page1" id="page1">
           <div class="line1 line"></div>
@@ -60,81 +55,73 @@
             <img class="paper-img" src="./image/paper.png" />
           </div>
         </div>
-        <div class="result">
-          <div id="user-winner">
-            <div class="user-winner one"></div>
-            <div class="user-winner two"></div>
-            <div class="user-winner three"></div>
-            <div class="user-picked picked">YOU PICKED</div>
-            <div class="rock item1" id="rock1">
-              <img
-                class="circle circle2"
-                style="border: 16px solid var(--blue)"
-                src="./image/circle.png"
-              />
-              <img class="rock-img result-rock" src="./image/rock.png" />
-            </div>
-            <div class="scissor item1" id="scissor1">
-              <img
-                class="circle circle2"
-                style="border: 16px solid var(--violet)"
-                src="./image/circle.png"
-              />
-              <img
-                class="scissor-img result-scissor"
-                src="./image/scissor.png"
-              />
-            </div>
-            <div class="paper item1" id="paper1">
-              <img
-                class="circle circle2"
-                style="border: 16px solid var(--orange)"
-                src="./image/circle.png"
-              />
-              <img class="paper-img result-paper" src="./image/paper.png" />
-            </div>
-          </div>
-          <div class="result-container" id="result">
+        <div class="result" id="result">
+          <div class="result-declaration result2">
             <p class="message"></p>
             <p class="result-against">AGAINST PC</p>
-            <button class="play" onclick="playAgain()">PLAY AGAIN</button>
           </div>
-          <div id="pc-winner">
-            <div class="pc-winner one"></div>
-            <div class="pc-winner two"></div>
-            <div class="pc-winner three"></div>
-            <div class="computer-picked picked">PC PICKED</div>
-            <div class="rock item1" id="rock2">
-              <img
-                class="circle circle2"
-                style="border: 16px solid var(--blue)"
-                src="./image/circle.png"
-              />
-              <img class="rock-img result-rock" src="./image/rock.png" />
+          <div class="result-container">
+            <div id="user-winner">
+              <div class="user-winner one"></div>
+              <div class="user-winner two"></div>
+              <div class="user-winner three"></div>
+              <div class="user-choice">
+                <div class="user-picked picked">YOU PICKED</div>
+              </div>
             </div>
-            <div class="scissor item1" id="scissor2">
-              <img
-                class="circle circle2"
-                style="border: 16px solid var(--violet)"
-                src="./image/circle.png"
-              />
-              <img
-                class="scissor-img result-scissor"
-                src="./image/scissor.png"
-              />
+            <div class="result-declaration result1" id="result">
+              <div>
+                <p class="message"></p>
+                <p class="result-against">AGAINST PC</p>
+              </div>
+              <button class="play" onclick="playAgain()">PLAY AGAIN</button>
             </div>
-            <div class="paper item1" id="paper2">
-              <img
-                class="circle circle2"
-                style="border: 16px solid var(--orange)"
-                src="./image/circle.png"
-              />
-              <img class="paper-img result-paper" src="./image/paper.png" />
+            <div id="pc-winner">
+              <div class="pc-winner one"></div>
+              <div class="pc-winner two"></div>
+              <div class="pc-winner three"></div>
+
+              <div class="pc-choice">
+                <div class="computer-picked picked">PC PICKED</div>
+              </div>
             </div>
           </div>
+          <button class="play result2" onclick="playAgain()">PLAY AGAIN</button>
         </div>
       </div>
+      <div class="footer">
+        <div class="rules">
+          <span class="close" onclick="ruleClose()"> X </span>
+          <p>Game Rules</p>
+          <ul>
+            <li>
+              Rock beats scissors, scissors beat paper, and paper beats rock.
+            </li>
+            <li>
+              Agree ahead of time whether you’ll count off “rock, paper,
+              scissors, shoot” or just “rock, paper, scissors.”
+            </li>
+            <li>
+              Use rock, paper, scissors to settle minor decisions or simply play
+              to pass the time
+            </li>
+            <li>
+              If both players lay down the same hand, each player lays down
+              another hand
+            </li>
+          </ul>
+        </div>
+        <div
+          class="rules-btn uppercase"
+          id="next"
+          onclick="openCelebration(this)"
+        >
+          Next
+        </div>
+        <div class="rules-btn uppercase" onclick="ruleOpen()">Rules</div>
+      </div>
     </div>
+
     <div id="celebration-container">
       <div class="celebration">
         <img class="star" src="./image/star.png" />
@@ -143,38 +130,6 @@
       <p class="hurray">HURRAY!!</p>
       <p class="user-won">YOU WON THE GAME</p>
       <button class="play play-btn" onclick="playAgain()">PLAY AGAIN</button>
-    </div>
-
-    <div class="footer">
-      <div class="rules">
-        <span class="close" onclick="ruleClose()"> X </span>
-        <p>Game Rules</p>
-        <ul>
-          <li>
-            Rock beats scissors, scissors beat paper, and paper beats rock.
-          </li>
-          <li>
-            Agree ahead of time whether you’ll count off “rock, paper, scissors,
-            shoot” or just “rock, paper, scissors.”
-          </li>
-          <li>
-            Use rock, paper, scissors to settle minor decisions or simply play
-            to pass the time
-          </li>
-          <li>
-            If both players lay down the same hand, each player lays down
-            another hand
-          </li>
-        </ul>
-      </div>
-      <div
-        class="rules-btn uppercase"
-        id="next"
-        onclick="openCelebration(this)"
-      >
-        Next
-      </div>
-      <div class="rules-btn uppercase" onclick="ruleOpen()">Rules</div>
     </div>
     <script src="index.js" defer></script>
   </body>
